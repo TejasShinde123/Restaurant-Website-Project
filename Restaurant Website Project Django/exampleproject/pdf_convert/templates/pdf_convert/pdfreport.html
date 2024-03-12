@@ -1,0 +1,172 @@
+{% load cart %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <style>
+
+.company-info {
+    background-color: #f8f9fa; /* Light gray background */
+    border: 2px solid #4CAF50; /* Green border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding around the content */
+    font-family: Arial, sans-serif; /* Default font family */
+    font-size: 18px; /* Font size */
+    color: #333; /* Dark text color */
+    text-align: center; /* Center-align the text */
+}
+
+/* Optional: Add some margin to the div */
+.company-info {
+    margin: 20px auto;
+    max-width: 600px; /* Limit the width of the div */
+}
+
+.thank-you {
+    background-color: #f8f9fa; /* Light gray background */
+    border: 2px solid #4CAF50; /* Green border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding around the content */
+    font-family: Arial, sans-serif; /* Default font family */
+    font-size: 18px; /* Font size */
+    color: #333; /* Dark text color */
+    text-align: center; /* Center-align the text */
+}
+
+/* Optional: Add some margin to the div */
+.thank-you {
+    margin: 20px auto;
+    max-width: 600px; /* Limit the width of the div */
+}
+
+
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50; /* Green */
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+      
+      .button:hover {
+        background-color: #e15a24; /* Darker green */
+      }
+      /* Table Styles */
+      .table {
+        margin: 20px auto;
+        width: 80%;
+      }
+      
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      
+      thead th {
+        background-color: #4CAF50; /* Green */
+        font-size: large;
+        color: white;
+        padding: 5px;
+        text-align: left;
+        border-bottom: 2px solid #ddd; /* Add bottom border for header */
+      }
+      
+      tbody td {
+          font-size: large;
+        border: 1px solid #ddd;
+        padding: 5px;
+      }
+      
+      tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      
+      tbody tr:hover {
+        background-color: rgb(253, 252, 252);
+      }
+      
+      
+      tfoot th {
+        background-color: #4CAF50; /* Green */
+        color: white;
+        padding: 3px;
+        text-align: right;
+      }
+      
+      tfoot th:first-child {
+        text-align: left; /* Align the 'Total' label to the left */
+      }
+      
+      header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+      }
+      
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dosa Plaza</h1>
+        
+    </header>
+    <div class="company-info">
+        <p>123 ABC Street,</p>
+        <p>City, Country</p>
+        <h2>Dosa Plaza  </h2>
+    </div>
+    
+    <div class="table">
+        <!-- {{products}} -->
+        <table>
+            <thead>
+                <tr>
+                    <th>srno</th>
+                    <th>Dish</th>
+                    <th>Dish name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{product.name1}}</td>
+                    <td>{{product.name1}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product|cart_quantity:request.session.cart}}</td>
+                    <td>{{product|price_total:request.session.cart}}</td>
+                </tr>
+                {% endfor %}
+
+                <tfoot>
+                    <tr>
+                        <th class="first" >Total</th>
+                        <th class="second" >{{products|total_cart_price:request.session.cart}}</th>
+                    </tr>
+                </tfoot>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="thank-you">
+      <p>Thank You for Choosing Us, we are waiting for your next order</p>
+  </div>
+
+</body>
+</html>

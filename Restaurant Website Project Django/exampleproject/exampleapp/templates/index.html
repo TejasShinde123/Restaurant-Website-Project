@@ -1,0 +1,345 @@
+
+{% load cart %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu Items</title>
+    <style>
+      
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type=text] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #45a049; /* Darker green */
+}
+
+.container {
+  display: flex;
+}
+
+.item {
+  flex: 1; /* This will make each item take up an equal amount of space */
+  /* You can also set specific widths for each item if needed */
+}
+
+/* Table Styles */
+.table-container {
+  margin: 20px auto;
+  width: 80%;
+  background-color: #f2f2f2; /* Light gray */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead th {
+  background-color: #4CAF50; /* Green */
+  font-size: 23px;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd; /* Add bottom border for header */
+}
+
+tbody td {
+  font-size: 17px;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+
+.item-box {
+  display: inline-block;
+  margin: 2px;
+  padding: 5px;
+  background-color: #8f7add; /* Green color */
+  color: white;
+  border-radius: 5px;
+}
+
+
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type=text] {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+}
+
+button[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.fa {
+  font-size: 20px;
+}
+
+
+.container {
+  display: flex;
+}
+
+.item {
+  flex: 1; /* This will make each item take up an equal amount of space */
+  /* You can also set specific widths for each item if needed */
+}
+
+/* Style for Add to Cart button */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Style for quantity buttons */
+input[type="submit"]#quantity-btn {
+    padding: 4px 8px;
+    font-size: 14px;
+}
+
+/* Style for remove button */
+input[type="submit"]#remove-btn {
+    background-color: #f44336;
+}
+
+input[type="submit"]#remove-btn:hover {
+    background-color: #d32f2f;
+}
+
+/* Style for cart quantity display */
+.cart-quantity {
+    margin: 0 4px;
+}
+
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #45a049; /* Darker green */
+}
+/* Table Styles */
+.table {
+  margin: 20px auto;
+  width: 80%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead th {
+  background-color: #4CAF50; /* Green */
+  font-size: 23px;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd; /* Add bottom border for header */
+}
+
+tbody td {
+  font-size: 17px;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: #ddd;
+}
+header a:hover {
+background-color: rgb(66, 152, 179);
+}
+tfoot th {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px;
+  text-align: right;
+}
+
+tfoot th:first-child {
+  text-align: left; /* Align the 'Total' label to the left */
+}
+
+    header {
+                background-color: #333;
+                color: white;
+                padding: 10px;
+                text-align: center;
+            }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .item-box {
+            display: inline-block;
+            margin: 2px;
+            padding: 5px;
+            background-color: #8f7add; /* Green color */
+            color: white;
+            border-radius: 5px;
+}
+
+    </style>
+</head>
+<body>
+  <header>
+    <h1>Dosa Plaza</h1>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/cart">Cart</a></li>
+            <li></li>
+        </ul>
+    </nav>
+</header>
+<div class="search-container">
+    <form method="get" action="/search">
+        <input type="text" placeholder="Search..." id="query" name="query">
+        <button class="button" type="submit">Search</button>
+    </form>
+</div>
+
+
+<!-- Encapsulate the table in a div with class "table-container" -->
+<div class="table-container">
+    <table border="1">
+        <thead>
+            <th>Sr. No.</th>
+            <th>Dish</th>
+            <th>Dish Name</th>
+            <th>Price</th>
+            <th>Cart</th>
+        </thead>
+        <tbody>
+            {% for item in menu_items %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{ item.name1 }}</td>
+                <td>{{ item.name2 }}</td>
+                <td>₹{{ item.price }}</td>
+                <td>
+                    {% if item|is_in_cart:request.session.cart %}
+                    <div class="container">
+                        <form action="/" method="post">
+                            {% csrf_token %}
+                            <input hidden type="text" name="product" value="{{item.id}}">
+                            <input hidden type="text" name="remove" value="True">
+                            <input type="submit" value="-">
+                        </form>
+                        <div class="item-box" id="quantity">{{item|cart_quantity:request.session.cart}}</div>
+                        <form class="item" action="/" method="post">
+                            {% csrf_token %}
+                            <input hidden type="text" name="product" value="{{item.id}}">
+                            <input class="item" type="submit" value="+">
+                        </form>
+                    </div>
+                    {% else %}
+                    <form class="item" action="/" method="post">
+                        {% csrf_token %}
+                        <input hidden type="text" name="product" value="{{item.id}}">
+                        <input class="item" type="submit" value="Add to Cart">
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>

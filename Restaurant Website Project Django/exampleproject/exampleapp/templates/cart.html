@@ -1,0 +1,158 @@
+{% load cart %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    <style>
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50; /* Green */
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #e15a24; /* Darker green */
+}
+/* Table Styles */
+.table {
+  margin: 20px auto;
+  width: 80%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+thead th {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd; /* Add bottom border for header */
+}
+
+tbody td {
+    font-size: large;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+  background-color: rgb(253, 252, 252);
+}
+
+
+tfoot th {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px;
+  text-align: right;
+}
+
+tfoot th:first-child {
+  text-align: left; /* Align the 'Total' label to the left */
+}
+
+
+header a:hover {
+                background-color: rgb(66, 152, 179);
+}
+header {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+            </style>
+</head>
+<body>
+    <header>
+        <h1>Dosa Plaza</h1> 
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/cart">Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="table">
+        <!-- {{products}} -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Dish</th>
+                    <th>Dish name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{product.name1}}</td>
+                    <td>{{product.name1}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product|cart_quantity:request.session.cart}}</td>
+                    <td>{{product|price_total:request.session.cart}}</td>
+                </tr>
+                {% endfor %}
+
+                <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th>{{products|total_cart_price:request.session.cart}}</th>
+                    </tr>
+                </tfoot>
+
+            </tbody>
+        </table>
+    </div>
+    <a class="button" href="{% url 'create-pdf' %}">Print Receipt</a>
+
+</body>
+</html>
